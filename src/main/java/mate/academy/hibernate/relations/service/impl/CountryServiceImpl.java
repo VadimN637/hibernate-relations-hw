@@ -20,7 +20,7 @@ public class CountryServiceImpl implements CountryService {
     public Country get(Long id) {
         return countryDao.get(id)
                 .orElseThrow(() -> new RuntimeException(
-                        "Can't get this country" + id));
+                        "Can't get this country " + id));
     }
 }
 
