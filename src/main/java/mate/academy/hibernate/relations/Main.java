@@ -21,20 +21,18 @@ public class Main {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         CountryDaoImpl countryDao = new CountryDaoImpl(sessionFactory);
-        ActorDaoImpl actorDao = new ActorDaoImpl(sessionFactory);
-        MovieDaoImpl movieDao = new MovieDaoImpl(sessionFactory);
-
         CountryService countryService = new CountryServiceImpl(countryDao);
-        ActorService actorService = new ActorServiceImpl(actorDao);
-        MovieService movieService = new MovieServiceImpl(movieDao);
-
         Country usa = new Country("USA");
         countryService.add(usa);
 
+        ActorDaoImpl actorDao = new ActorDaoImpl(sessionFactory);
+        ActorService actorService = new ActorServiceImpl(actorDao);
         Actor vinDiesel = new Actor("Vin Diesel");
         vinDiesel.setCountry(usa);
         actorService.add(vinDiesel);
 
+        MovieDaoImpl movieDao = new MovieDaoImpl(sessionFactory);
+        MovieService movieService = new MovieServiceImpl(movieDao);
         Movie fastAndFurious = new Movie("Fast and Furious");
         fastAndFurious.setActors(List.of(vinDiesel));
         movieService.add(fastAndFurious);
